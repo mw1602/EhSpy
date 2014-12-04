@@ -10,3 +10,4 @@ python-firebase==1.2
 requests==2.4.1
 tweepy==2.3.0
 wsgiref==0.1.2
+gunicorn==19.1.1
