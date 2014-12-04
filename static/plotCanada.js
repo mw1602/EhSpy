@@ -19,22 +19,28 @@ function initialize() {
      ' tweets a sentence-final <i>eh</i>, ' +
      'feel a little bit of Canadian pride.</p>'+
 
+     '<p>Click on the flag to see the tweet (at your own risk)</p>'+
+
      '</div>'+
      '</div>';
 
   var infowindow = new google.maps.InfoWindow({
       content: contentString,
-      position: { lat: 51.716896, lng: -43.807132},
+      position: { lat: 45.716896, lng: -43.807132},
 
 
       draggable: true,
-      maxWidth: 200
+      maxWidth: 175
   });
 
   infowindow.open(map)
   var infowindow = new google.maps.InfoWindow({
       // content: childSnapshot.child(2).val()
     })
+
+  var mcOptions = {gridSize: 20, maxZoom: 10};
+
+  var mc = new MarkerClusterer(map,[],mcOptions);
   // Set the firebase reference
   var coordsRef = new Firebase('https://expat-finder.firebaseio.com/coordinates/');
 
@@ -56,6 +62,9 @@ function initialize() {
       icon: icon,
       map: map,
     });
+
+    mc.addMarker(marker);
+    console.log(mc);
 
     google.maps.event.addListener(marker,'click', function() {
       infowindow.setContent(childSnapshot.child(2).val())
